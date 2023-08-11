@@ -1,21 +1,17 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
-import 'dart:math';
+import 'package:farmapp/MilkScreen/AddMilk.dart';
 import 'package:flutter/material.dart';
 import '../Components/Clip.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'AddFarm.dart';
-
-class FarmMainScreen extends StatefulWidget {
-  const FarmMainScreen({Key? key}) : super(key: key);
+class MilkMainScreen extends StatefulWidget {
+  const MilkMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<FarmMainScreen> createState() => _FarmMainScreenState();
+  State<MilkMainScreen> createState() => _MilkMainScreenState();
 }
 
-class _FarmMainScreenState extends State<FarmMainScreen> {
-  List<Farm> farmsData = [];
+class _MilkMainScreenState extends State<MilkMainScreen> {
+  List<Milk> milkData = [];
   @override
   Widget build(BuildContext context) {
     PreferredSizeWidget _appBar() {
@@ -106,14 +102,15 @@ class _FarmMainScreenState extends State<FarmMainScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   scrollDirection: Axis.vertical,
-                  children: farmsData
-                      .map((farm) => CardSection(
-                            title: farm.name,
-                            value: farm.cows.toString(),
-                            unit: "cows",
-                            time: "Anytime",
-                            isDone: false,
-                            image: AssetImage('assets/icons/syringe.png'),
+                  children: milkData
+                      .map((Milk) => CardSection(
+                            title: Milk.MilkProduced.toString(),
+                            value: Milk.CowsMilked.toString(),
+                            // unit: "cows",
+                            time: Milk.Time,
+                            date: Milk.Date,
+                            // isDone: false,
+                            // image: const AssetImage('assets/icons/syringe.png'),
                           ))
                       .toList(),
                 ),
@@ -124,14 +121,14 @@ class _FarmMainScreenState extends State<FarmMainScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final newFarm = await Navigator.push(
+          final newMilk = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddFarmScreen()),
+            MaterialPageRoute(builder: (context) => const AddMilkScreen()),
           );
 
-          if (newFarm != null && newFarm is Farm) {
+          if (newMilk != null && newMilk is Milk) {
             setState(() {
-              farmsData.add(newFarm);
+              milkData.add(newMilk);
             });
           }
         },
@@ -145,18 +142,14 @@ class _FarmMainScreenState extends State<FarmMainScreen> {
 class CardSection extends StatelessWidget {
   final String title;
   final String value;
-  final String unit;
+  final String date;
   final String time;
-  final ImageProvider<Object> image;
-  final bool isDone;
 
   CardSection({
     required this.title,
     required this.value,
-    required this.unit,
+    required this.date,
     required this.time,
-    required this.image,
-    required this.isDone,
   }) : super(key: UniqueKey());
 
   @override
@@ -201,51 +194,28 @@ class CardSection extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                title,
+                                '${title} Litres',
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.inter(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
                               const SizedBox(height: 5),
-                              Text('$value $unit',
-                                  style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.8,
-                                    color: const Color.fromARGB(255, 0, 0, 0),
-                                  )),
+                              Text(
+                                '${value} Cows ',
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.8,
+                                  color: const Color.fromARGB(255, 0, 0, 0),
+                                ),
+                              ),
                             ],
                           ),
                         ),
                         const SizedBox(width: 10),
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10.0)),
-                              shape: BoxShape.rectangle,
-                              color: isDone
-                                  ? Theme.of(context).colorScheme.secondary
-                                  : const Color(0xFFF0F4F8),
-                            ),
-                            width: 44,
-                            height: 44,
-                            child: Center(
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: isDone
-                                    ? Theme.of(context).colorScheme.secondary
-                                    : const Color(0xFFF0F4F8),
-                              ),
-                            ),
-                          ),
-                          onTap: () {
-                            debugPrint(
-                                "Button clicked. Handle button setState");
-                          },
-                        )
                       ],
                     ),
                   ],

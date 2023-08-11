@@ -10,6 +10,7 @@ import '../Components/CustomPopup.dart';
 import '../Expense/ExpenseScreen.dart';
 import '../FarmScreen/FarmScreen.dart';
 
+import '../MilkScreen/MilkScreen.dart';
 import '../Stock/DashboardStocks.dart';
 
 class LoginForm extends StatefulWidget {
@@ -123,6 +124,8 @@ class _LoginFormState extends State<LoginForm> {
                         return DoctorDashBoardScreen();
                       } else if (emailController.text == "stock") {
                         return StockDashBoard();
+                      } else if (emailController.text == "milk") {
+                        return MilkMainScreen();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();
