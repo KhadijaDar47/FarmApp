@@ -1,0 +1,68 @@
+name: farmapp
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^1.0.3
+  intl: ^0.18.1
+  flutter_localized_locales: ^2.0.4
+  syncfusion_flutter_charts: ^21.2.4
+  fl_chart: ^0.62.0
+  flutter_speed_dial: ^7.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  google_fonts: ^4.0.1
+
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/Googlelogo.png
+    - assets/images/Facebooklogo.png
+    - assets/icons/Close.svg
+    - assets/medPic/19.png
+    - assets/images/user.png
+    - assets/images/stock.png
+    - assets/icons/profile_picture.png
+    - assets/images/doctor_pic.png
+    - assets/icons/fail.svg
+    - assets/icons/close2.svg
+    - assets/icons/bubbles.svg
+    
+ 
+  fonts:
+    - family: Recoleta
+      fonts:
+        - asset: font/Recoleta-RegularDEMO.otf
+        # - asset: fonts/Recoleta-Bold.ttf
+        #   weight: 700
+
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
