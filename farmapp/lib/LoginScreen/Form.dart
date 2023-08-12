@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison
 
+// import 'package:farmapp/Admin/AdminNavigator.dart';
 import 'package:farmapp/DoctorScreens/Dashboard/Dashboard.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ import '../FarmScreen/FarmScreen.dart';
 import '../FeedScreen/FeedScreen.dart';
 import '../MilkScreen/MilkScreen.dart';
 import '../Stock/DashboardStocks.dart';
+import '../dashboards/dash.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -129,6 +131,8 @@ class _LoginFormState extends State<LoginForm> {
                         return MilkMainScreen();
                       } else if (emailController.text == "feed") {
                         return FeedMainScreen();
+                      } else if (emailController.text == "admin") {
+                        return CardBasicRoute();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();

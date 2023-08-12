@@ -1,3 +1,4 @@
+import 'package:farmapp/Expense/expenseDashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -311,6 +312,27 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigate to the next screen when the button is pressed
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  const ExpenseDashboard(), // Replace with the actual next screen
+            ),
+          );
+        },
+        child: Container(
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0XFF2879E9),
+          ),
+          child: const Icon(
+            Icons.arrow_forward,
+          ),
         ),
       ),
     );

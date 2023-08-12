@@ -43,6 +43,23 @@ flutter:
     - assets/icons/fail.svg
     - assets/icons/close2.svg
     - assets/icons/bubbles.svg
+    - assets/dashboardIcons/Battery.png
+    - assets/dashboardIcons/blooddrop.png
+    - assets/dashboardIcons/capsule.png
+    - assets/dashboardIcons/cow.png
+    - assets/dashboardIcons/Heart.png
+    - assets/dashboardIcons/heartbeat.png
+    - assets/dashboardIcons/hearting.png
+    - assets/dashboardIcons/humidity.png
+    - assets/dashboardIcons/methane.png
+    - assets/dashboardIcons/oxygen.png
+    - assets/dashboardIcons/pressure.png
+    - assets/dashboardIcons/profile_picture.png
+    - assets/dashboardIcons/Swimming.png
+    - assets/dashboardIcons/syringe.png
+    - assets/dashboardIcons/temp.png
+    - assets/dashboardIcons/Walking.png
+    - assets/dashboardIcons/water.png
     
  
   fonts:
