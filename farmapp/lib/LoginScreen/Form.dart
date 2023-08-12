@@ -10,6 +10,7 @@ import '../Components/CustomPopup.dart';
 import '../Expense/ExpenseScreen.dart';
 import '../FarmScreen/FarmScreen.dart';
 
+import '../FeedScreen/FeedScreen.dart';
 import '../MilkScreen/MilkScreen.dart';
 import '../Stock/DashboardStocks.dart';
 
@@ -126,6 +127,8 @@ class _LoginFormState extends State<LoginForm> {
                         return StockDashBoard();
                       } else if (emailController.text == "milk") {
                         return MilkMainScreen();
+                      } else if (emailController.text == "feed") {
+                        return FeedMainScreen();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();

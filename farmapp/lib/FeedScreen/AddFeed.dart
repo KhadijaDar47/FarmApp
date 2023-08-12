@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import '../Components/CustomButton.dart';
 
-class AddMilkScreen extends StatefulWidget {
-  const AddMilkScreen({Key? key}) : super(key: key);
+import '../Components/CustomButton.dart';
+// Import the CustomButton and Farm classes if they are implemented in your project
+
+class AddFeedScreen extends StatefulWidget {
+  const AddFeedScreen({Key? key}) : super(key: key);
 
   @override
-  State<AddMilkScreen> createState() => _AddMilkScreenState();
+  State<AddFeedScreen> createState() => _AddFeedScreenState();
 }
 
-class _AddMilkScreenState extends State<AddMilkScreen> {
+class _AddFeedScreenState extends State<AddFeedScreen> {
   double _currentSliderValue = 0;
-  final DateController = TextEditingController();
-  final CowsMilkedController = TextEditingController();
-  final MilkProducedController = TextEditingController();
-  var selectedTime;
+  final feedNameController = TextEditingController();
+  final quantityController = TextEditingController();
+  final costController = TextEditingController();
+  var selectedValue;
   void initState() {
     super.initState();
-    selectedTime = "Morning";
-    DateController.text = DateFormat('MM/dd/yyyy').format(DateTime.now());
+    selectedValue = "Own";
+    // DateController.text = DateFormat('MM/dd/yyyy').format(DateTime.now());
   }
+  // final EmployeeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Milk Information",
+                "Feed Information",
                 style: GoogleFonts.inter(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
@@ -49,7 +51,7 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                "Information about the milk",
+                "Information about the feed",
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w200,
                   color: Colors.black,
@@ -62,7 +64,7 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Enter Milk Information ",
+                    "Enter Feed Information ",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w300,
                       fontSize: 12,
@@ -90,10 +92,10 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: TextFormField(
-                        controller: CowsMilkedController,
+                        controller: feedNameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "No. of Cows Milked",
+                          hintText: "Feed Name",
                           hintStyle: GoogleFonts.inter(
                             fontWeight: FontWeight.w300,
                             fontSize: 12,
@@ -111,29 +113,22 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                         color: const Color.fromARGB(255, 247, 249, 251),
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      child: DropdownButtonFormField<String>(
-                        value: selectedTime, // selected value
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedTime = newValue;
-                          });
-                        },
-                        items: <String>['Morning', 'Evening']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                      child: TextFormField(
+                        controller: quantityController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Time",
+                          hintText: "Quantity",
                           hintStyle: GoogleFonts.inter(
                             fontWeight: FontWeight.w300,
                             fontSize: 12,
                             color: Colors.grey,
                           ),
                         ),
+                        onChanged: (value) {},
                       ),
                     ),
                     SizedBox(height: mediaQueryData.size.height * 0.02),
@@ -141,6 +136,45 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                       children: [
                         Expanded(
                           child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 247, 249, 251),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: DropdownButtonFormField<String>(
+                              value: selectedValue,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedValue = newValue;
+                                });
+                              },
+                              items: <String>[
+                                'Own',
+                                'Purchased'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Feed Type",
+                                hintStyle: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 7),
+                        Expanded(
+                          child: Visibility(
+                            visible: selectedValue == 'Purchased',
+                            child: Container(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
                               height: 50,
@@ -148,109 +182,67 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                                 color: const Color.fromARGB(255, 247, 249, 251),
                                 borderRadius: BorderRadius.circular(14),
                               ),
-                              child: TextFormField(
-                                controller: DateController,
+                              child: TextField(
+                                controller: costController,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Date",
+                                  hintText: 'Cost',
                                   hintStyle: GoogleFonts.inter(
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12,
                                     color: Colors.grey,
                                   ),
-                                  suffixIcon: IconButton(
-                                    onPressed: () async {
-                                      final DateTime? selectedDate =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2101),
-                                      );
-
-                                      if (selectedDate != null) {
-                                        DateController.text =
-                                            DateFormat('MM/dd/yyyy')
-                                                .format(selectedDate);
-                                      }
-                                    },
-                                    icon: Icon(Icons.calendar_today),
-                                  ),
                                 ),
                                 onChanged: (value) {},
-                              )),
-                        ),
-                        const SizedBox(width: 7),
-                      ],
-                    ),
-                    SizedBox(height: mediaQueryData.size.height * 0.02),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Milk Produced: ${_currentSliderValue.toInt()}',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 11.0,
-                            color: Colors.grey.shade700,
+                              ),
+                            ),
                           ),
-                        ),
-                        Slider(
-                          value: _currentSliderValue,
-                          min: 0,
-                          max: 5000,
-                          onChanged: (double newValue) {
-                            setState(() {
-                              _currentSliderValue = newValue;
-                            });
-                          },
                         ),
                       ],
                     ),
                     SizedBox(height: mediaQueryData.size.height * 0.03),
                     CustomButton(
-                      name: "Add Milk",
+                      name: "Add Feed",
                       color: const Color.fromARGB(255, 56, 121, 233),
                       onPressed: () {
-                        String milkProduced = _currentSliderValue.toString();
-                        String cowsMilked = CowsMilkedController.text.trim();
-                        String date = DateController.text.trim();
-                        String time = selectedTime.toString();
-                        // String employeesText = EmployeeController.text.trim();
-                        // String time =
+                        String fname = feedNameController.text.trim();
+                        String fquantity = quantityController.text.trim();
+                        String ftype = selectedValue.toString();
 
-                        if (milkProduced.isEmpty ||
-                            cowsMilked.isEmpty ||
-                            date.isEmpty ||
-                            _currentSliderValue == 0.0 ||
-                            time.isEmpty) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text("All fields are required."),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("OK"),
-                                ),
-                              ],
-                            ),
-                          );
-                          return;
+                        String fcost = costController.text.trim();
+
+                        if (fname.isEmpty ||
+                            fquantity.isEmpty ||
+                            ftype.isEmpty ||
+                            ftype == 'Purchased') {
+                          if (fcost.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text("All fields are required."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         }
 
-                        Milk newMilk = Milk(
-                          CowsMilked: int.parse(cowsMilked),
-                          Date: date,
-                          MilkProduced: _currentSliderValue.toInt(),
-                          Time: time,
-                        );
-                        Navigator.pop(context, newMilk);
+                        Feed newFeed = Feed(
+                            feedName: fname,
+                            quantity: fquantity,
+                            feedType: ftype,
+                            cost: fcost);
+
+                        Navigator.pop(context, newFeed);
                       },
                     ),
                   ],
@@ -264,18 +256,16 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
   }
 }
 
-class Milk {
-  final String Date;
-  final String Time;
-  final int CowsMilked;
-  final int MilkProduced;
-  // final int cows;
+class Feed {
+  final String feedName;
+  final String quantity;
+  final String feedType;
+  final String? cost;
 
-  Milk({
-    required this.CowsMilked,
-    required this.Date,
-    required this.MilkProduced,
-    required this.Time,
-    // required this.cows,
+  Feed({
+    required this.feedName,
+    required this.quantity,
+    required this.feedType,
+    this.cost,
   });
 }

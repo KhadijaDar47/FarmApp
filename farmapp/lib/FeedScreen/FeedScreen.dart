@@ -1,17 +1,23 @@
-import 'package:farmapp/MilkScreen/AddMilk.dart';
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../Components/Clip.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MilkMainScreen extends StatefulWidget {
-  const MilkMainScreen({Key? key}) : super(key: key);
+import 'AddFeed.dart';
+
+// import 'AddFarm.dart';
+
+class FeedMainScreen extends StatefulWidget {
+  const FeedMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<MilkMainScreen> createState() => _MilkMainScreenState();
+  State<FeedMainScreen> createState() => _FeedMainScreenState();
 }
 
-class _MilkMainScreenState extends State<MilkMainScreen> {
-  List<Milk> milkData = [];
+class _FeedMainScreenState extends State<FeedMainScreen> {
+  List<Feed> feedData = [];
   @override
   Widget build(BuildContext context) {
     PreferredSizeWidget _appBar() {
@@ -102,15 +108,12 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   scrollDirection: Axis.vertical,
-                  children: milkData
-                      .map((Milk) => CardSection(
-                            title: Milk.MilkProduced.toString(),
-                            value: Milk.CowsMilked.toString(),
-                            // unit: "cows",
-                            time: Milk.Time,
-                            date: Milk.Date,
-                            // isDone: false,
-                            // image: const AssetImage('assets/icons/syringe.png'),
+                  children: feedData
+                      .map((Feed) => CardSection(
+                            Fname: Feed.feedName,
+                            Fquantity: Feed.quantity,
+                            Ftype: Feed.feedType,
+                            Fcost: Feed.cost ?? '0',
                           ))
                       .toList(),
                 ),
@@ -121,14 +124,14 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final newMilk = await Navigator.push(
+          final newFeed = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddMilkScreen()),
+            MaterialPageRoute(builder: (context) => const AddFeedScreen()),
           );
 
-          if (newMilk != null && newMilk is Milk) {
+          if (newFeed != null && newFeed is Feed) {
             setState(() {
-              milkData.add(newMilk);
+              feedData.add(newFeed);
             });
           }
         },
@@ -140,16 +143,16 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
 }
 
 class CardSection extends StatelessWidget {
-  final String title;
-  final String value;
-  final String date;
-  final String time;
+  final String Fname;
+  final String Fquantity;
+  final String Ftype;
+  final String Fcost;
 
   CardSection({
-    required this.title,
-    required this.value,
-    required this.date,
-    required this.time,
+    required this.Fname,
+    required this.Fquantity,
+    required this.Ftype,
+    required this.Fcost,
   }) : super(key: UniqueKey());
 
   @override
@@ -194,17 +197,16 @@ class CardSection extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                '${title} Litres',
+                                Fname,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.inter(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                '${value} Cows ',
+                                "${Fquantity} Kg",
                                 style: GoogleFonts.inter(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.0,
@@ -214,23 +216,56 @@ class CardSection extends StatelessWidget {
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                'Date: $date',
-                                style: const TextStyle(
+                                Ftype,
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w300,
                                   fontSize: 12.0,
-                                  color: Colors.grey,
+                                  letterSpacing: 0.8,
+                                  color: const Color.fromARGB(255, 0, 0, 0),
                                 ),
                               ),
-                              Text(
-                                'Time: $time',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.grey,
+                              Visibility(
+                                visible: Fcost.isNotEmpty,
+                                child: Text(
+                                  'PKR ${Fcost}',
+                                  style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.8,
+                                    color: const Color.fromARGB(255, 0, 0, 0),
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
                         const SizedBox(width: 10),
+                        // InkWell(
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //       borderRadius:
+                        //           const BorderRadius.all(Radius.circular(10.0)),
+                        //       shape: BoxShape.rectangle,
+                        //       color: isDone
+                        //           ? Theme.of(context).colorScheme.secondary
+                        //           : const Color(0xFFF0F4F8),
+                        //     ),
+                        //     width: 44,
+                        //     height: 44,
+                        //     child: Center(
+                        //       child: Icon(
+                        //         Icons.arrow_forward_ios,
+                        //         color: isDone
+                        //             ? Theme.of(context).colorScheme.secondary
+                        //             : const Color(0xFFF0F4F8),
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   onTap: () {
+                        //     debugPrint(
+                        //         "Button clicked. Handle button setState");
+                        //   },
+                        // )
                       ],
                     ),
                   ],
