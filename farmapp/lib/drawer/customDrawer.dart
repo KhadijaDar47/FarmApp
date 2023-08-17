@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../Expense/expenseDashboard.dart';
@@ -17,8 +16,8 @@ class CustomDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Colors.black,
               ),
               child: Column(
