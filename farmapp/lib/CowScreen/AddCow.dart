@@ -77,7 +77,7 @@ class _AddCowScreenState extends State<AddCowScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 25),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -636,6 +636,7 @@ class _AddCowScreenState extends State<AddCowScreen> {
                         Navigator.pop(context, newCow);
                       },
                     ),
+                    SizedBox(height: mediaQueryData.size.height * 0.02),
                   ],
                 ),
               ),

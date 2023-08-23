@@ -10,6 +10,7 @@ import '../Components/Checkbox.dart';
 import '../Components/CustomButton.dart';
 import '../Components/CustomPopup.dart';
 // import '../CowScreen/AddCows.dart';
+import '../CowScreen/CowMainScreen.dart';
 import '../Expense/ExpenseScreen.dart';
 import '../FarmScreen/FarmScreen.dart';
 
@@ -103,7 +104,7 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: mediaQueryData.size.height * 0.04),
           CustomButton(
             name: "Login",
-            color: Color.fromARGB(255, 56, 121, 233),
+            color: const Color.fromARGB(255, 56, 121, 233),
             onPressed: () {
               if (passwordController.text.isEmpty ||
                   emailController.text.isEmpty) {
@@ -126,17 +127,17 @@ class _LoginFormState extends State<LoginForm> {
                       if (emailController.text == "farm") {
                         return const FarmMainScreen();
                       } else if (emailController.text == "doctor") {
-                        return DoctorDashBoardScreen();
+                        return const DoctorDashBoardScreen();
                       } else if (emailController.text == "stock") {
-                        return StockDashBoard();
+                        return const StockDashBoard();
                       } else if (emailController.text == "milk") {
-                        return MilkMainScreen();
+                        return const MilkMainScreen();
                       } else if (emailController.text == "feed") {
-                        return FeedMainScreen();
+                        return const FeedMainScreen();
                       } else if (emailController.text == "admin") {
-                        return CardBasicRoute();
+                        return const CardBasicRoute();
                       } else if (emailController.text == "cow") {
-                        return AddCowScreen();
+                        return const CowMainScreen();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();

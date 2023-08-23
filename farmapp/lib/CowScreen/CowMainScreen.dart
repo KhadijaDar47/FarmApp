@@ -8,14 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 // import 'AddFarm.dart';
 
-class FarmMainScreen extends StatefulWidget {
-  const FarmMainScreen({Key? key}) : super(key: key);
+class CowMainScreen extends StatefulWidget {
+  const CowMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<FarmMainScreen> createState() => _FarmMainScreenState();
+  State<CowMainScreen> createState() => _CowMainScreenState();
 }
 
-class _FarmMainScreenState extends State<FarmMainScreen> {
+class _CowMainScreenState extends State<CowMainScreen> {
   List<Cow> cowsData = [];
   @override
   Widget build(BuildContext context) {

@@ -13,6 +13,7 @@ class AddMilkScreen extends StatefulWidget {
 
 class _AddMilkScreenState extends State<AddMilkScreen> {
   double _currentSliderValue = 0;
+  // ignore: non_constant_identifier_names
   final DateController = TextEditingController();
   final CowsMilkedController = TextEditingController();
   final MilkProducedController = TextEditingController();
@@ -91,6 +92,10 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                       ),
                       child: TextFormField(
                         controller: CowsMilkedController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "No. of Cows Milked",
@@ -220,8 +225,6 @@ class _AddMilkScreenState extends State<AddMilkScreen> {
                         String cowsMilked = CowsMilkedController.text.trim();
                         String date = DateController.text.trim();
                         String time = selectedTime.toString();
-                        // String employeesText = EmployeeController.text.trim();
-                        // String time =
 
                         if (milkProduced.isEmpty ||
                             cowsMilked.isEmpty ||
