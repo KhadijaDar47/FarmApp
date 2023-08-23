@@ -1,17 +1,22 @@
-import 'package:farmapp/MilkScreen/AddMilk.dart';
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+import 'dart:math';
+import 'package:farmapp/CowScreen/AddCow.dart';
 import 'package:flutter/material.dart';
 import '../Components/Clip.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MilkMainScreen extends StatefulWidget {
-  const MilkMainScreen({Key? key}) : super(key: key);
+// import 'AddFarm.dart';
+
+class FarmMainScreen extends StatefulWidget {
+  const FarmMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<MilkMainScreen> createState() => _MilkMainScreenState();
+  State<FarmMainScreen> createState() => _FarmMainScreenState();
 }
 
-class _MilkMainScreenState extends State<MilkMainScreen> {
-  List<Milk> milkData = [];
+class _FarmMainScreenState extends State<FarmMainScreen> {
+  List<Cow> cowsData = [];
   @override
   Widget build(BuildContext context) {
     PreferredSizeWidget _appBar() {
@@ -102,15 +107,20 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   scrollDirection: Axis.vertical,
-                  children: milkData
-                      .map((Milk) => CardSection(
-                            title: Milk.MilkProduced.toString(),
-                            value: Milk.CowsMilked.toString(),
-                            // unit: "cows",
-                            time: Milk.Time,
-                            date: Milk.Date,
-                            // isDone: false,
-                            // image: const AssetImage('assets/icons/syringe.png'),
+                  children: cowsData
+                      .map((cow) => CardSection(
+                            CowID: cow.CowID,
+                            Age: cow.Age,
+                            Breed: cow.Breed,
+                            Color: cow.Color,
+                            DOB: cow.DOB,
+                            Description: cow.Description,
+                            Gender: cow.Gender,
+                            Height: cow.Height,
+                            Inherent_Quality: cow.Inherent_Quality,
+                            SubBreed: cow.SubBreed,
+                            Weight: cow.Weight,
+                            Cost: cow.Cost ?? '0',
                           ))
                       .toList(),
                 ),
@@ -121,14 +131,14 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final newMilk = await Navigator.push(
+          final newCow = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AddMilkScreen()),
+            MaterialPageRoute(builder: (context) => const AddCowScreen()),
           );
 
-          if (newMilk != null && newMilk is Milk) {
+          if (newCow != null && newCow is Cow) {
             setState(() {
-              milkData.add(newMilk);
+              cowsData.add(newCow);
             });
           }
         },
@@ -140,16 +150,33 @@ class _MilkMainScreenState extends State<MilkMainScreen> {
 }
 
 class CardSection extends StatelessWidget {
-  final String title;
-  final String value;
-  final String date;
-  final String time;
+  final String CowID;
+  final String Breed;
+  final String SubBreed;
+  final String Age;
+  final String DOB;
+  final String Gender;
+  final String Color;
+  final String Height;
+  final String Weight;
+  final String Inherent_Quality;
+  final String Description;
+  final String? Cost;
+  // bool? isDone;
 
   CardSection({
-    required this.title,
-    required this.value,
-    required this.date,
-    required this.time,
+    required this.CowID,
+    required this.Breed,
+    required this.SubBreed,
+    required this.Age,
+    required this.DOB,
+    required this.Gender,
+    required this.Color,
+    required this.Height,
+    required this.Weight,
+    required this.Inherent_Quality,
+    required this.Description,
+    this.Cost,
   }) : super(key: UniqueKey());
 
   @override
@@ -194,43 +221,51 @@ class CardSection extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                '${title} Litres',
+                                CowID,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.inter(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
                               ),
                               const SizedBox(height: 5),
-                              Text(
-                                '${value} Cows ',
-                                style: GoogleFonts.inter(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.8,
-                                  color: const Color.fromARGB(255, 0, 0, 0),
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                'Date: $date',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Text(
-                                'Time: $time',
-                                style: const TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.grey,
-                                ),
-                              ),
+                              // Text('$value $unit',
+                              //     style: GoogleFonts.inter(
+                              //       fontWeight: FontWeight.w300,
+                              //       fontSize: 12.0,
+                              //       letterSpacing: 0.8,
+                              //       color: const Color.fromARGB(255, 0, 0, 0),
+                              //     ),),
                             ],
                           ),
                         ),
                         const SizedBox(width: 10),
+                        // InkWell(
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //       borderRadius:
+                        //           const BorderRadius.all(Radius.circular(10.0)),
+                        //       shape: BoxShape.rectangle,
+                        //       color: isDone
+                        //           ? Theme.of(context).colorScheme.secondary
+                        //           : const Color(0xFFF0F4F8),
+                        //     ),
+                        //     width: 44,
+                        //     height: 44,
+                        //     child: Center(
+                        //       child: Icon(
+                        //         Icons.arrow_forward_ios,
+                        //         color: isDone
+                        //             ? Theme.of(context).colorScheme.secondary
+                        //             : const Color(0xFFF0F4F8),
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   onTap: () {
+                        //     debugPrint(
+                        //         "Button clicked. Handle button setState");
+                        //   },
+                        // )
                       ],
                     ),
                   ],

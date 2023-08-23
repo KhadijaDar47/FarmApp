@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
 // import 'package:farmapp/Admin/AdminNavigator.dart';
+import 'package:farmapp/CowScreen/AddCow.dart';
 import 'package:farmapp/DoctorScreens/Dashboard/Dashboard.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
@@ -8,11 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../Components/Checkbox.dart';
 import '../Components/CustomButton.dart';
 import '../Components/CustomPopup.dart';
+// import '../CowScreen/AddCows.dart';
 import '../Expense/ExpenseScreen.dart';
 import '../FarmScreen/FarmScreen.dart';
 
 import '../FeedScreen/FeedScreen.dart';
-import '../MilkScreen/MilkScreen.dart';
+import '../MilkManagement/MilkScreen.dart';
 import '../Stock/DashboardStocks.dart';
 import '../dashboards/dash.dart';
 
@@ -133,6 +135,8 @@ class _LoginFormState extends State<LoginForm> {
                         return FeedMainScreen();
                       } else if (emailController.text == "admin") {
                         return CardBasicRoute();
+                      } else if (emailController.text == "cow") {
+                        return AddCowScreen();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();

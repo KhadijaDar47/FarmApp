@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../Expense/ExpenseScreen.dart';
 import '../Expense/expenseDashboard.dart';
-import '../MilkScreen/MilkScreen.dart';
+import '../MilkManagement/MilkScreen.dart';
 import '../drawer/customDrawer.dart';
 import 'basicHealthStats.dart';
 

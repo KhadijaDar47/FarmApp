@@ -13,15 +13,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // theme: TAppTheme.lightTheme,
-        // darkTheme: TAppTheme.darkTheme,
-        // themeMode: ThemeMode.system,
-        scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
-        debugShowCheckedModeBanner: false,
-        home: const Scaffold(
-          backgroundColor: Color.fromARGB(255, 247, 249, 251),
-          body: SplashScreen(),
-        ));
+      // theme: TAppTheme.lightTheme,
+      // darkTheme: TAppTheme.darkTheme,
+      // themeMode: ThemeMode.system,
+      scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
+      debugShowCheckedModeBanner: false,
+      home: const Scaffold(
+        backgroundColor: Color.fromARGB(255, 247, 249, 251),
+        body: SplashScreen(),
+      ),
+    );
   }
 }
 
