@@ -3,6 +3,8 @@
 // import 'package:farmapp/Admin/AdminNavigator.dart';
 import 'package:farmapp/CowScreen/AddCow.dart';
 import 'package:farmapp/DoctorScreens/Dashboard/Dashboard.dart';
+import 'package:farmapp/ProfileScreen/profileScreen.dart';
+// import 'package:farmapp/ProfileScreen/Profile.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +13,8 @@ import '../Components/CustomButton.dart';
 import '../Components/CustomPopup.dart';
 // import '../CowScreen/AddCows.dart';
 import '../CowScreen/CowMainScreen.dart';
+import '../EmployeeScreen/AddEmployee.dart';
+import '../EmployeeScreen/EmployeeScreen.dart';
 import '../Expense/ExpenseScreen.dart';
 import '../FarmScreen/FarmScreen.dart';
 
@@ -138,6 +142,10 @@ class _LoginFormState extends State<LoginForm> {
                         return const CardBasicRoute();
                       } else if (emailController.text == "cow") {
                         return const CowMainScreen();
+                      } else if (emailController.text == "profile") {
+                        return const UserProfile();
+                      } else if (emailController.text == "staff") {
+                        return const StaffMainScreen();
                       } else {
                         // Default fallback in case the category doesn't match any specific screen
                         return Container();

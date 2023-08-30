@@ -1,0 +1,80 @@
+{
+    "cows": [
+        {
+            "cowID": 1,
+            "heartRate": 75,
+            "temperature": 101.5,
+            "bloodPressure": "120/80",
+            "walkingSteps": 8500,
+            "swimmingTime": "00:30:00",
+            "pills": [
+                {
+                    "name": "Antibiotic",
+                    "count": 2
+                },
+                {
+                    "name": "Painkiller",
+                    "count": 1
+                }
+            ],
+            "vaccinations": [
+                {
+                    "name": "Bovine Flu",
+                    "count": 2
+                },
+                {
+                    "name": "Cattle Pox",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "cowID": 2,
+            "heartRate": 68,
+            "temperature": 100.8,
+            "bloodPressure": "118/75",
+            "walkingSteps": 7200,
+            "swimmingTime": "00:20:00",
+            "pills": [
+                {
+                    "name": "Antibiotic",
+                    "count": 1
+                },
+                {
+                    "name": "Painkiller",
+                    "count": 2
+                }
+            ],
+            "vaccinations": [
+                {
+                    "name": "Bovine Flu",
+                    "count": 1
+                },
+                {
+                    "name": "Rinderpest",
+                    "count": 1
+                }
+            ]
+        },
+        {
+            "cowID": 3,
+            "heartRate": 80,
+            "temperature": 101.2,
+            "bloodPressure": "125/85",
+            "walkingSteps": 9500,
+            "swimmingTime": "00:40:00",
+            "pills": [
+                {
+                    "name": "Painkiller",
+                    "count": 3
+                }
+            ],
+            "vaccinations": [
+                {
+                    "name": "Cattle Pox",
+                    "count": 2
+                }
+            ]
+        }
+    ]
+}
