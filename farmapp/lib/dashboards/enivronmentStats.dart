@@ -72,9 +72,9 @@ class DetailScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Icon(Icons.arrow_back_ios,
+                            child: const Icon(Icons.arrow_back_ios,
                                 size: 15.0, color: Colors.white),
-                            shape: CircleBorder(
+                            shape: const CircleBorder(
                               side: BorderSide(
                                   color: Colors.white,
                                   width: 2,
@@ -82,8 +82,8 @@ class DetailScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: 20),
-                        Column(
+                        const SizedBox(width: 20),
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
@@ -119,23 +119,24 @@ class DetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Image(
                         fit: BoxFit.cover,
-                        image: const AssetImage('assets/icons/temp.png'),
+                        image:
+                            const AssetImage('assets/dashboardIcons/temp.png'),
                         height: 73,
                         width: 80,
                         color: Colors.white.withOpacity(1)),
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 // Chart
                 Material(
                   shadowColor: Colors.grey.withOpacity(0.01), // added
                   type: MaterialType.card,
                   elevation: 10, borderRadius: new BorderRadius.circular(10.0),
                   child: Container(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     height: 300,
                     child: Column(
                       children: <Widget>[
@@ -144,26 +145,27 @@ class DetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.all(10.0),
+                              margin: const EdgeInsets.all(10.0),
                               width: 10,
                               height: 10,
                               decoration: BoxDecoration(
                                   color: Constants.lightGreen,
                                   shape: BoxShape.circle),
                             ),
-                            Text("Rest"),
+                            const Text("Rest"),
                             Container(
-                              margin: EdgeInsets.only(left: 10.0, right: 10.0),
+                              margin: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0),
                               width: 10,
                               height: 10,
                               decoration: BoxDecoration(
                                   color: Constants.darkGreen,
                                   shape: BoxShape.circle),
                             ),
-                            Text("Active"),
+                            const Text("Active"),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         // Main Cards - Heartbeat and Blood Pressure
                         Container(
                           height: 100,
@@ -213,13 +215,13 @@ class DetailScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         // Line Graph
                         Expanded(
                           child: Container(
                               decoration: new BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(10.0)),
                                 shape: BoxShape.rectangle,
                                 color: Constants.darkGreen,
                               ),
@@ -228,8 +230,8 @@ class DetailScreen extends StatelessWidget {
                                     clipType: ClipType.multiple),
                                 child: Container(
                                     decoration: new BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10.0)),
                                   shape: BoxShape.rectangle,
                                   color: Constants.lightGreen,
                                 )),
@@ -239,12 +241,12 @@ class DetailScreen extends StatelessWidget {
                     ),
                   ), // added
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Container(
                   child: GridView.builder(
                     shrinkWrap: true,
                     primary: false,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: _crossAxisCount,
                       crossAxisSpacing: _crossAxisSpacing,
@@ -261,7 +263,8 @@ class DetailScreen extends StatelessWidget {
                             value: "76",
                             unit: "avg bpm",
                             color: Constants.darkGreen,
-                            image: AssetImage('assets/icons/pressure.png'),
+                            image: const AssetImage(
+                                'assets/dashboardIcons/pressure.png'),
                           );
                           break;
                         case 1:
@@ -271,7 +274,8 @@ class DetailScreen extends StatelessWidget {
                             value: "82",
                             unit: "avg bpm",
                             color: Constants.darkOrange,
-                            image: AssetImage('assets/icons/humidity.png'),
+                            image: const AssetImage(
+                                'assets/dashboardIcons/humidity.png'),
                           );
                           break;
                         case 2:
@@ -281,7 +285,8 @@ class DetailScreen extends StatelessWidget {
                             value: "82",
                             unit: "avg bpm",
                             color: Constants.darkOrange,
-                            image: AssetImage("assets/icons/methane.png"),
+                            image: const AssetImage(
+                                "assets/dashboardIcons/methane.png"),
                           );
                           break;
                         case 3:
@@ -291,7 +296,8 @@ class DetailScreen extends StatelessWidget {
                             value: "82",
                             unit: "avg bpm",
                             color: Constants.darkOrange,
-                            image: AssetImage("assets/icons/oxygen.png"),
+                            image: const AssetImage(
+                                "assets/dashboardIcons/oxygen.png"),
                           );
                           break;
                         default:
@@ -300,7 +306,7 @@ class DetailScreen extends StatelessWidget {
                             time: "",
                             value: "76",
                             unit: "avg bpm",
-                            image: AssetImage(''),
+                            image: const AssetImage(''),
                             color: Constants.darkOrange,
                           );
                           break;

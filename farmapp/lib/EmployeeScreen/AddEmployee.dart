@@ -484,7 +484,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                               Gender.isEmpty ||
                               Type.isEmpty ||
                               Salary.isEmpty ||
-                              WHRS.isEmpty && selectedType == 'Daily Wager') {
+                              WHRS.isEmpty) {
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
