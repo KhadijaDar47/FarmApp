@@ -361,6 +361,28 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         color: const Color.fromARGB(255, 247, 249, 251),
                         borderRadius: BorderRadius.circular(14),
                       ),
+                      child: TextFormField(
+                        controller: salaryController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Salary",
+                          hintStyle: GoogleFonts.inter(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        onChanged: (value) {},
+                      ),
+                    ),
+                    SizedBox(height: mediaQueryData.size.height * 0.01),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 247, 249, 251),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -402,6 +424,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         String Qualification = qualificationController.text;
                         String Type = selectedType;
                         String Salary = salaryController.text;
+                        String WHRS = whrsController.text;
                         print('Name: ' +
                             Name +
                             'Phone: ' +
@@ -418,66 +441,80 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                             Status);
 
                         // Validation logic
-                        if (selectedType == 'Employee') {
-                          if (emailController.text.isEmpty ||
-                              qualificationController.text.isEmpty ||
-                              nameController.text.isEmpty ||
-                              phoneNumberController.text.isEmpty ||
-                              dobController.text.isEmpty ||
-                              selectedGender.isEmpty ||
-                              selectedType.isEmpty ||
-                              salaryController.text.isEmpty) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: const Text("Error"),
-                                content: const Text("All fields are required."),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text("OK"),
-                                  ),
-                                ],
-                              ),
-                            );
-                            return;
-                          }
-                        } else if (selectedType == 'Daily Wager') {
-                          if (nameController.text.isEmpty ||
-                              phoneNumberController.text.isEmpty ||
-                              dobController.text.isEmpty ||
-                              selectedGender.isEmpty ||
-                              selectedType.isEmpty ||
-                              salaryController.text.isEmpty) {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: const Text("Error"),
-                                content: const Text("All fields are required."),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text("OK"),
-                                  ),
-                                ],
-                              ),
-                            );
-                            return;
-                          }
+
+                        if (Email.isEmpty ||
+                            Qualification.isEmpty ||
+                            Name.isEmpty ||
+                            Phone.isEmpty ||
+                            dob.isEmpty ||
+                            Gender.isEmpty ||
+                            Type.isEmpty ||
+                            Salary.isEmpty ||
+                            WHRS.isEmpty && selectedType == 'Employee') {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Error"),
+                              content: const Text("All fields are required."),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text("OK"),
+                                ),
+                              ],
+                            ),
+                          );
+                          return;
+                        } else {
+                          staff newStaff = staff(
+                              name: Name,
+                              DOB: dob,
+                              phoneNumber: Phone,
+                              status: Status,
+                              email: Email,
+                              gender: Gender,
+                              qualification: Qualification,
+                              salary: Salary,
+                              type: Type,
+                              workHRS: WHRS);
+                          Navigator.pop(context, newStaff);
                         }
 
-                        staff newStaff = staff(
-                          name: Name,
-                          DOB: dob,
-                          phoneNumber: Phone,
-                          status: Status,
-                          email: Email,
-                          gender: Gender,
-                          qualification: Qualification,
-                          salary: Salary,
-                          type: Type,
-                        );
-                        Navigator.pop(context, newStaff);
+                        if (Name.isEmpty ||
+                            Phone.isEmpty ||
+                            dob.isEmpty ||
+                            Gender.isEmpty ||
+                            Type.isEmpty ||
+                            Salary.isEmpty ||
+                            WHRS.isEmpty && selectedType == 'Daily Wager') {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Error"),
+                              content: const Text("All fields are required."),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text("OK"),
+                                ),
+                              ],
+                            ),
+                          );
+                          return;
+                        } else {
+                          staff newStaff = staff(
+                              name: Name,
+                              DOB: dob,
+                              phoneNumber: Phone,
+                              status: Status,
+                              // email: Email,
+                              gender: Gender,
+                              // qualification: Qualification,
+                              salary: Salary,
+                              type: Type,
+                              workHRS: WHRS);
+                          Navigator.pop(context, newStaff);
+                        }
                       },
                     ),
                   ],
@@ -501,6 +538,7 @@ class staff {
   String? qualification;
   final String type;
   final String salary;
+  final String workHRS;
 
   staff(
       {required this.name,
@@ -511,5 +549,6 @@ class staff {
       required this.gender,
       this.qualification,
       required this.type,
-      required this.salary});
+      required this.salary,
+      required this.workHRS});
 }
