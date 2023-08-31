@@ -590,19 +590,19 @@ class _AddCowScreenState extends State<AddCowScreen> {
                         String description = DescriptionController.text;
                         String cost = CostController.text;
 
-                        if (cowID.isEmpty ||
-                            breed.isEmpty ||
-                            subBreed.isEmpty ||
-                            age.isEmpty ||
-                            dob.isEmpty ||
-                            gender.isEmpty ||
-                            color.isEmpty ||
-                            height.isEmpty ||
-                            weight.isEmpty ||
-                            inherent_Quality.isEmpty ||
-                            description.isEmpty ||
-                            inherent_Quality == 'Purchased') {
-                          if (cost.isEmpty) {
+                        if (inherent_Quality == 'Purchased') {
+                          if (cowID.isEmpty ||
+                              breed.isEmpty ||
+                              subBreed.isEmpty ||
+                              age.isEmpty ||
+                              dob.isEmpty ||
+                              gender.isEmpty ||
+                              color.isEmpty ||
+                              height.isEmpty ||
+                              weight.isEmpty ||
+                              inherent_Quality.isEmpty ||
+                              description.isEmpty ||
+                              cost.isEmpty) {
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
@@ -616,12 +616,56 @@ class _AddCowScreenState extends State<AddCowScreen> {
                                 ],
                               ),
                             );
-                          }
 
-                          return;
+                            return;
+                          }
+                        } else {
+                          Cow newCow = Cow(
+                              CowID: cowID,
+                              Breed: breed,
+                              SubBreed: subBreed,
+                              Age: age,
+                              DOB: dob,
+                              Gender: gender,
+                              Color: color,
+                              Height: height,
+                              Weight: weight,
+                              Inherent_Quality: inherent_Quality,
+                              Description: description,
+                              Cost: cost);
+                          Navigator.pop(context, newCow);
                         }
 
-                        Cow newCow = Cow(
+                        if (inherent_Quality == 'Own') {
+                          if (cowID.isEmpty ||
+                              breed.isEmpty ||
+                              subBreed.isEmpty ||
+                              age.isEmpty ||
+                              dob.isEmpty ||
+                              gender.isEmpty ||
+                              color.isEmpty ||
+                              height.isEmpty ||
+                              weight.isEmpty ||
+                              inherent_Quality.isEmpty ||
+                              description.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text("All fields are required."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            return;
+                          }
+                        } else {
+                          Cow newCow = Cow(
                             CowID: cowID,
                             Breed: breed,
                             SubBreed: subBreed,
@@ -632,8 +676,10 @@ class _AddCowScreenState extends State<AddCowScreen> {
                             Height: height,
                             Weight: weight,
                             Inherent_Quality: inherent_Quality,
-                            Description: description);
-                        Navigator.pop(context, newCow);
+                            Description: description,
+                          );
+                          Navigator.pop(context, newCow);
+                        }
                       },
                     ),
                     SizedBox(height: mediaQueryData.size.height * 0.02),

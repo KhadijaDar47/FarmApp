@@ -120,7 +120,7 @@ class _CowMainScreenState extends State<CowMainScreen> {
                             Inherent_Quality: cow.Inherent_Quality,
                             SubBreed: cow.SubBreed,
                             Weight: cow.Weight,
-                            Cost: cow.Cost ?? '0',
+                            Cost: cow.Cost,
                           ))
                       .toList(),
                 ),
@@ -220,22 +220,111 @@ class CardSection extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                CowID,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Cow ID: $CowID',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.inter(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '$Breed - $SubBreed',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 5),
-                              // Text('$value $unit',
-                              //     style: GoogleFonts.inter(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '$Gender - $Age Yrs',
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    '$Color',
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Weight: $Weight kg',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black),
+                                  ),
+                                  Text(
+                                    'Height: $Height cm',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.8,
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 5),
+                              Inherent_Quality == 'Purchased'
+                                  ?
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  Text(
+                                      '$Inherent_Quality - $Cost Rs',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.8,
+                                          color: Colors.black),
+                                    )
+                                  : Text(
+                                      '$Inherent_Quality',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.8,
+                                          color: Colors.black),
+                                    )
+                              // Text(
+                              //   'Height: $Height cm',
+                              //   overflow: TextOverflow.ellipsis,
+                              //   style: GoogleFonts.inter(
                               //       fontWeight: FontWeight.w300,
                               //       fontSize: 12.0,
                               //       letterSpacing: 0.8,
-                              //       color: const Color.fromARGB(255, 0, 0, 0),
-                              //     ),),
+                              //       color: Colors.black),
+                              // ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),
