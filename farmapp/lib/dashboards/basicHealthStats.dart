@@ -217,8 +217,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> readData() async {
     final String response = await DefaultAssetBundle.of(context)
-        .loadString('assets/HealthDummyData.json');
+        .loadString('lib/JsonFile/HealthDummyData.json');
+    print(response); // Log the JSON response
     final data = json.decode(response);
+    print(data); // Log the parsed JSON data
+    // final String response = await DefaultAssetBundle.of(context)
+    //     .loadString('lib/JsonFile/HealthDummyData.json');
+    // final data = json.decode(response);
     _catalogdata = List<Map<String, dynamic>>.from(data["cows"]);
 
     setState(() {});
