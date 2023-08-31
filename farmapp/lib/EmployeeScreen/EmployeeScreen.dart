@@ -109,12 +109,16 @@ class _StaffMainScreenState extends State<StaffMainScreen> {
                   scrollDirection: Axis.vertical,
                   children: staffData
                       .map((emp) => CardSection(
-                            title: emp.name,
-                            value: emp.type,
-                            unit: emp.phoneNumber,
-                            time: emp.gender,
-                            isDone: false,
-                            image: AssetImage('assets/icons/syringe.png'),
+                            name: emp.name, DOB: emp.DOB,
+                            phoneNumber: emp.phoneNumber, status: emp.status,
+                            gender: emp.gender, type: emp.type,
+                            salary: emp.salary, workHRS: emp.workHRS,
+                            // title: emp.name,
+                            // value: emp.type,
+                            // unit: emp.phoneNumber,
+                            // time: emp.gender,
+                            // isDone: false,
+                            // image: AssetImage('assets/icons/syringe.png'),
                           ))
                       .toList(),
                 ),
@@ -144,21 +148,41 @@ class _StaffMainScreenState extends State<StaffMainScreen> {
 }
 
 class CardSection extends StatelessWidget {
-  final String title;
-  final String value;
-  final String unit;
-  final String time;
-  final ImageProvider<Object> image;
-  final bool isDone;
-
-  CardSection({
-    required this.title,
-    required this.value,
-    required this.unit,
-    required this.time,
-    required this.image,
-    required this.isDone,
-  }) : super(key: UniqueKey());
+  // final String title;
+  // final String value;
+  // final String unit;
+  // final String time;
+  // final ImageProvider<Object> image;
+  // final bool isDone;
+  final String name;
+  final String DOB;
+  final String phoneNumber;
+  final String status;
+  String? email;
+  final String gender;
+  String? qualification;
+  final String type;
+  final String salary;
+  final String workHRS;
+  CardSection(
+      {
+      // required this.title,
+      // required this.value,
+      // required this.unit,
+      // required this.time,
+      // required this.image,
+      // required this.isDone,
+      required this.name,
+      required this.DOB,
+      required this.phoneNumber,
+      required this.status,
+      required this.gender,
+      required this.type,
+      required this.salary,
+      required this.workHRS,
+      this.email,
+      this.qualification})
+      : super(key: UniqueKey());
 
   @override
   Widget build(BuildContext context) {
@@ -201,52 +225,66 @@ class CardSection extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                title,
-                                overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.inter(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    name,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.inter(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ),
+                                  status == 'Active'
+                                      ? const Icon(
+                                          Icons.circle,
+                                          color: Colors.green,
+                                        )
+                                      : const Icon(
+                                          Icons.circle,
+                                          color: Colors.red,
+                                        )
+                                  // Text(
+                                  // name,
+                                  // overflow: TextOverflow.ellipsis,
+                                  // style: GoogleFonts.inter(
+                                  //     fontSize: 20,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: Colors.black),
+                                  // ),
+                                ],
                               ),
                               const SizedBox(height: 5),
-                              Text('$value $unit',
-                                  style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.8,
-                                    color: const Color.fromARGB(255, 0, 0, 0),
-                                  )),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '$gender - $type',
+                                    style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.8,
+                                      color: const Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                  ),
+                                  Text(
+                                    '$workHRS hrs',
+                                    style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.8,
+                                      color: const Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        InkWell(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10.0)),
-                              shape: BoxShape.rectangle,
-                              color: isDone
-                                  ? Theme.of(context).colorScheme.secondary
-                                  : const Color(0xFFF0F4F8),
-                            ),
-                            width: 44,
-                            height: 44,
-                            child: Center(
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color: isDone
-                                    ? Theme.of(context).colorScheme.secondary
-                                    : const Color(0xFFF0F4F8),
-                              ),
-                            ),
-                          ),
-                          onTap: () {
-                            debugPrint(
-                                "Button clicked. Handle button setState");
-                          },
-                        )
+                        // const SizedBox(width: 10),
                       ],
                     ),
                   ],
