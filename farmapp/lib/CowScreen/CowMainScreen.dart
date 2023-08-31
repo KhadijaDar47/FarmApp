@@ -3,6 +3,7 @@
 import 'dart:math';
 import 'package:farmapp/CowScreen/AddCow.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../Components/Clip.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -102,6 +103,8 @@ class _CowMainScreenState extends State<CowMainScreen> {
           children: [
             _header(),
             const SizedBox(height: 10),
+            // _buildHistoryList(),
+            // const SizedBox(height: 5),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -314,17 +317,6 @@ class CardSection extends StatelessWidget {
                                           letterSpacing: 0.8,
                                           color: Colors.black),
                                     )
-                              // Text(
-                              //   'Height: $Height cm',
-                              //   overflow: TextOverflow.ellipsis,
-                              //   style: GoogleFonts.inter(
-                              //       fontWeight: FontWeight.w300,
-                              //       fontSize: 12.0,
-                              //       letterSpacing: 0.8,
-                              //       color: Colors.black),
-                              // ),
-                              //   ],
-                              // ),
                             ],
                           ),
                         ),
