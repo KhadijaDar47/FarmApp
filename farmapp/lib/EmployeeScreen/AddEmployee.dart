@@ -13,15 +13,11 @@ class AddEmployeeScreen extends StatefulWidget {
 }
 
 class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
-  // double _currentSliderValue = 0;
   final nameController = TextEditingController();
   final dobController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  final statusController = TextEditingController();
   final emailController = TextEditingController();
-  final genderController = TextEditingController();
   final qualificationController = TextEditingController();
-  final typeController = TextEditingController();
   final whrsController = TextEditingController();
   final salaryController = TextEditingController();
   String selectedType = 'Employee';
@@ -442,29 +438,31 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
 
                         // Validation logic
 
-                        if (Email.isEmpty ||
-                            Qualification.isEmpty ||
-                            Name.isEmpty ||
-                            Phone.isEmpty ||
-                            dob.isEmpty ||
-                            Gender.isEmpty ||
-                            Type.isEmpty ||
-                            Salary.isEmpty ||
-                            WHRS.isEmpty && selectedType == 'Employee') {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text("All fields are required."),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("OK"),
-                                ),
-                              ],
-                            ),
-                          );
-                          return;
+                        if (selectedType == 'Employee') {
+                          if (Email.isEmpty ||
+                              Qualification.isEmpty ||
+                              Name.isEmpty ||
+                              Phone.isEmpty ||
+                              dob.isEmpty ||
+                              Gender.isEmpty ||
+                              Type.isEmpty ||
+                              Salary.isEmpty ||
+                              WHRS.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text("All fields are required."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                            return;
+                          }
                         } else {
                           staff newStaff = staff(
                               name: Name,
@@ -479,28 +477,29 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                               workHRS: WHRS);
                           Navigator.pop(context, newStaff);
                         }
-
-                        if (Name.isEmpty ||
-                            Phone.isEmpty ||
-                            dob.isEmpty ||
-                            Gender.isEmpty ||
-                            Type.isEmpty ||
-                            Salary.isEmpty ||
-                            WHRS.isEmpty && selectedType == 'Daily Wager') {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text("All fields are required."),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("OK"),
-                                ),
-                              ],
-                            ),
-                          );
-                          return;
+                        if (selectedType == 'Daily Wager') {
+                          if (Name.isEmpty ||
+                              Phone.isEmpty ||
+                              dob.isEmpty ||
+                              Gender.isEmpty ||
+                              Type.isEmpty ||
+                              Salary.isEmpty ||
+                              WHRS.isEmpty && selectedType == 'Daily Wager') {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text("All fields are required."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              ),
+                            );
+                            return;
+                          }
                         } else {
                           staff newStaff = staff(
                               name: Name,
