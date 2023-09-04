@@ -72,18 +72,19 @@ class DetailScreen extends StatelessWidget {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Icon(Icons.arrow_back_ios,
-                                size: 15.0, color: Colors.white),
                             shape: const CircleBorder(
                               side: BorderSide(
                                   color: Colors.white,
                                   width: 2,
                                   style: BorderStyle.solid),
                             ),
+                            child: const Icon(Icons.arrow_back_ios,
+                                size: 15.0, color: Colors.white),
                           ),
                         ),
                         const SizedBox(width: 20),
-                        const Column(
+
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[

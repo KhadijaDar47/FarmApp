@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../Components/Clip.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../dashboards/dash.dart';
 import 'AddFarm.dart';
 
 class FarmMainScreen extends StatefulWidget {
@@ -242,8 +243,8 @@ class CardSection extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            debugPrint(
-                                "Button clicked. Handle button setState");
+                            MaterialPageRoute(
+                                builder: (context) => const CardBasicRoute());
                           },
                         )
                       ],
